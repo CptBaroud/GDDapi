@@ -1,0 +1,9 @@
+module.exports = {
+    username: 'grvn',
+    password: '1234',
+    firstName: 'Seveno',
+    lastName: 'Gurvan',
+    isAdmin: 'yes',
+    dob: '12/11/1991',
+    email: 'gurvan.seveno@gmail.com',
+};

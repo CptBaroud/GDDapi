@@ -1,0 +1,18 @@
+var db = require('../dbconnection');
+
+var Activities = {
+    getAllActivities: function (callback) {
+        return db.query("SELECT * FROM activities", callback);
+    },
+    getActivitiesById :function (id, callback) {
+        return db.query("SELECT * FROM activities where id_activity=?", [id], callback);
+    },
+    addActivities: function (activities, callback) {
+        return db.query("INSERT INTO activities VALUE(null,?,?,null,?,?, null ,null )", [activities.name, activities.description, activities.date, activities.price], callback);
+    },
+    updateActivities: function (id, activities, callback) {
+        return db.query("UPDATE activities SET name=?, description=?, date=? WHERE id_activity=?", [activities.name, activities.description, activities.date, id], callback);
+    }
+};
+
+module.exports = Activities;
