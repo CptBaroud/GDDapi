@@ -1,9 +1,8 @@
 let express = require('express');
 let router = express.Router();
 let jwtUtils = require('../utils/jwt.utils');
-let login = require('../models/login');
 
-router.post('/getToken', function (req, res, next) {
+router.post('/getToken', function (req, res) {
     res.send(jwtUtils.generatedToken());
 });
 

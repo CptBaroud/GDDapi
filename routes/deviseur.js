@@ -90,6 +90,9 @@ router.get('/code/:code?', function (req, res) {
     }
 });
 
+/**
+ * Permet d'ajouter un deviseur
+ */
 router.post('/', function (req, res) {
     deviseur.addDeviseur(req.body, function (error) {
         jwt.verify(req.headers['token'], JWT_SECRET_SIGN, function (err) {
@@ -108,7 +111,7 @@ router.post('/', function (req, res) {
 
 router.put('/update/:code', function (req, res) {
     if (Object.keys(req.body).length === 3) {
-        if(Object.keys(req.body).includes("nom") && Object.keys(req.body).includes("prenom") && Object.keys(req.body).includes("secteur")){
+        if (Object.keys(req.body).includes("nom") && Object.keys(req.body).includes("prenom") && Object.keys(req.body).includes("secteur")) {
             deviseur.updateDeviseur(req.params.code, req.body, function (error, rows) {
                 jwt.verify(req.headers['token'], JWT_SECRET_SIGN, function (err) {
                     if (error) {
@@ -171,6 +174,20 @@ router.put('/update/:code', function (req, res) {
                 });
             } else if (Object.keys(req.body).includes("prenom")) {
                 deviseur.updatePrenomDeviseur(req.params.code, req.body, function (error, rows) {
+                    jwt.verify(req.headers['token'], JWT_SECRET_SIGN, function (err) {
+                        if (error) {
+                            res.json(error);
+                        } else {
+                            if (err) {
+                                res.json(err);
+                            } else {
+                                res.json(rows);
+                            }
+                        }
+                    });
+                });
+            } else if (Object.keys(req.body).includes("dateFin")) {
+                deviseur.updateDateFinDeviseur(req.params.code, req.body, function (error, rows) {
                     jwt.verify(req.headers['token'], JWT_SECRET_SIGN, function (err) {
                         if (error) {
                             res.json(error);

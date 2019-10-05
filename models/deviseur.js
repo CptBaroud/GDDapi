@@ -25,6 +25,9 @@ let Comment = {
     updatePrenomDeviseur : function(code, deviseur, callback) {
         return db.query("UPDATE deviseur SET Prenom=? WHERE Code=?", [deviseur.prenom, code], callback);
     },
+    updateDateFinDeviseur : function(code, deviseur, callback) {
+        return db.query("UPDATE deviseur SET DateFin=? WHERE Code=?", [deviseur.dateFin, code], callback);
+    },
     updateSecteurDeviseur : function(code, deviseur, callback) {
         return db.query("UPDATE deviseur SET Secteur=? WHERE Code=?", [deviseur.secteur, code], callback);
     },
